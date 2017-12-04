@@ -29,7 +29,10 @@ end
 
 def captcha2(input)
   distance = (input.length / 2) - 1
-  (input + input[0..distance]).scan(/(?=(\d)\d{#{distance}}\1)/).flatten.map(&:to_i)
+  (input + input[0..distance])
+    .scan(/(?=(\d)\d{#{distance}}\1)/)
+    .flatten
+    .map(&:to_i)
     .sum
 end
 
