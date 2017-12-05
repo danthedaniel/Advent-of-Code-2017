@@ -7,7 +7,9 @@ main:
     la  $a0,table    # Get table pointer
     ori $a1,$0,1032  # Table size
     # int num_jumps = solve(&table, 1032);
+    ori $t9,$ra,0    # Store old $ra
     jal solve
+    ori $ra,$t9,0    # Restore old $ra
     # printf("%d\n", num_jumps);
     ori $a0,$s0,0    # Copy return value to SYSCALL argument
     ori $v0,$0,0x1   # set SYSCALL to 1 (display int)
