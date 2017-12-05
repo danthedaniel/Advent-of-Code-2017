@@ -45,8 +45,19 @@ loop:
         # int* temp = table_ptr + offset * sizeof(int);
     sll  $t6,$t1,2   # Multiply offset by 4 (to convert it to words)
     add  $t3,$t0,$t6 # Add offset to table_ptr
-        # table[*table_ptr]++;
+
+        # if (table[*table_ptr] >= 3)
+    addi $t6,$t1,-3
+    bltz $t6,else
+            # table[*table_ptr]--;
+    addi $t1,$t1,-1
+    j    store
+        # else
+else:
+            # table[*table_ptr]++;
     addi $t1,$t1,1   # Increment jump by one word
+
+store:
     sw   $t1,0($t0)  # Store incremented jump
         # table_ptr = temp;
     ori  $t0,$t3,0   # Update table pointer
