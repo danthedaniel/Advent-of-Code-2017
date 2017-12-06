@@ -6,6 +6,8 @@ defmodule Day6 do
 
     def restack(list, map \\ Map.new, n \\ 0) when is_list(list) do
         new_map = Map.put(map, list, n)
+        # If the new map is the same size as the old map, then we've been here
+        # before and have found a cycle.
         if Map.size(new_map) == Map.size(map) do
             cycle_size = n - Map.get(map, list)
             {Map.size(map), cycle_size}
@@ -13,7 +15,10 @@ defmodule Day6 do
             {max, index} = list
                 |> Enum.with_index
                 |> Enum.max_by(fn(x) -> elem(x, 0) end)
+            # Set the cell with the current maximum to 0
             new_list = List.replace_at(list, index, 0)
+            # Add 1 to each cell in turn until we've added "max" back to the
+            # whole system.
             new_list = (index + 1)..(index + max)
                 |> Enum.reduce(new_list, fn(x, acc) -> increment_at(acc, x) end)
             restack(new_list, new_map, n + 1)

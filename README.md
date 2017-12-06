@@ -1,6 +1,10 @@
 Advent of Code 2017
 ===
 
+>*On the first day of Christmas, my true love gave to me*
+
+>*A checksum script in Ruby*
+
 [Official site](http://adventofcode.com/).
 
 ### Personal Rules
