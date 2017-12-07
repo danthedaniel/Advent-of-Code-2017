@@ -21,3 +21,4 @@ Advent of Code 2017
 * Day 4 - Rust
 * Day 5 - 32 bit MIPS Assembly
 * Day 6 - Elixir
+* Day 7 - JavaScript
