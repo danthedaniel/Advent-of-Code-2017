@@ -1,5 +1,9 @@
 var fs = require('fs');
 
+var outgoing = function(tree, node) {
+    return tree.edges.filter(edge => edge[0] === node);
+};
+
 var parent_node = function(tree, node) {
     var parent = tree.edges.find(edge => edge[1] === node);
     return parent ? parent[0] : null;
@@ -37,7 +41,7 @@ var solve = function(input) {
     console.log('Root: ' + root_node(tree));
 };
 
-fs.readFile('input', 'utf8', function (err, data) {
+fs.readFile('input', 'utf8', function(err, data) {
     if (err) {
         console.error(err);
     } else {
